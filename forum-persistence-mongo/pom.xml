@@ -1,0 +1,31 @@
+<!-- MongoDB persistence: documents & reactive repositories -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.forum</groupId>
+    <artifactId>forum-platform</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>forum-persistence-mongo</artifactId>
+  <name>Forum Persistence – MongoDB</name>
+
+  <dependencies>
+    <!-- Spring Data MongoDB (reactive gives us flexibility) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+    </dependency>
+
+    <!-- Domain models for mapping references (e.g., ids, enums) -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-domain</artifactId>
+    </dependency>
+  </dependencies>
+</project>
+

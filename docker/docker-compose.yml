@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: forum_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: forumdb
+      POSTGRES_USER: userName
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:6
+    container_name: forum_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+  redis:
+    image: redis:7
+    container_name: forum_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
+  mongodata:

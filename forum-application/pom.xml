@@ -1,0 +1,51 @@
+<!-- Application layer: core business logic / use cases -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.forum</groupId>
+    <artifactId>forum-platform</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>forum-application</artifactId>
+  <name>Forum Application Layer</name>
+
+  <dependencies>
+    <!-- Domain model (interfaces, base classes) -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-domain</artifactId>
+    </dependency>
+
+    <!-- Persistence modules (optional by feature) -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-persistence-pgsql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-persistence-mongo</artifactId>
+    </dependency>
+
+    <!-- Messaging or cache if used in use-cases -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-messaging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-cache-redis</artifactId>
+    </dependency>
+
+    <!-- Mappers (DTO ↔ domain) -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-mapper</artifactId>
+    </dependency>
+  </dependencies>
+</project>
+

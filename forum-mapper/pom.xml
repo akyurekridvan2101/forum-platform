@@ -1,0 +1,45 @@
+<!-- Mapper module: DTO ↔ Entity/Document converters -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.forum</groupId>
+    <artifactId>forum-platform</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>forum-mapper</artifactId>
+  <name>Forum Mapper</name>
+
+  <dependencies>
+    <!-- MapStruct or manual mapping support -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>1.5.5.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct-processor</artifactId>
+      <version>1.5.5.Final</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Domain models -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-domain</artifactId>
+    </dependency>
+
+    <!-- DTOs -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-dto</artifactId>
+    </dependency>
+  </dependencies>
+</project>
+

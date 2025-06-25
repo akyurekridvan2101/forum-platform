@@ -1,0 +1,41 @@
+<!-- Messaging module: RabbitMQ / Kafka integrations -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.forum</groupId>
+    <artifactId>forum-platform</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>forum-messaging</artifactId>
+  <name>Forum Messaging</name>
+
+  <dependencies>
+    <!-- Spring AMQP for RabbitMQ -->
+    <!--
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-amqp</artifactId>
+    </dependency>
+    -->
+
+    <!-- Optional: Kafka support (if needed in future) -->
+    <!--
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
+    </dependency>
+    -->
+    
+    <!-- Shared domain models -->
+    <dependency>
+      <groupId>com.forum</groupId>
+      <artifactId>forum-domain</artifactId>
+    </dependency>
+  </dependencies>
+</project>
+
