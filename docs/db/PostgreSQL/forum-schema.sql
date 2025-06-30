@@ -82,8 +82,8 @@ CREATE TABLE categories (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table: topics
-CREATE TABLE topics (
+-- Table: posts
+CREATE TABLE posts (
     id BIGSERIAL PRIMARY KEY,
     category_id BIGINT NOT NULL REFERENCES categories(id),
     author_id BIGINT NOT NULL REFERENCES users(id),
@@ -101,7 +101,7 @@ CREATE TABLE topics (
 );
 
 -- Table: tags
--- Description: Represents topic tags (e.g. 'java', 'spring-boot', 'linux'). Can be created by trusted users or moderators.
+-- Description: Represents post tags (e.g. 'java', 'spring-boot', 'linux'). Can be created by trusted users or moderators.
 CREATE TABLE tags (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL,                  -- Displayed name (e.g. "Java")
@@ -113,19 +113,19 @@ CREATE TABLE tags (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table: topic_tags
--- Description: Many-to-many relationship between topics and tags
-CREATE TABLE topic_tags (
-    topic_id BIGINT NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+-- Table: post_tags
+-- Description: Many-to-many relationship between posts and tags
+CREATE TABLE post_tags (
+    post_id BIGINT NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
     tag_id BIGINT NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
-    PRIMARY KEY (topic_id, tag_id)
+    PRIMARY KEY (post_id, tag_id)
 );
 
 -- Table: comments (only metadata, actual content in MongoDB)
 CREATE TABLE comments (
     id BIGSERIAL PRIMARY KEY,
     mongo_id VARCHAR(24) UNIQUE NOT NULL,
-    topic_id BIGINT NOT NULL REFERENCES topics(id),
+    post_id BIGINT NOT NULL REFERENCES posts(id),
     author_id BIGINT NOT NULL REFERENCES users(id),
     parent_comment_id BIGINT REFERENCES comments(id),
     is_hidden BOOLEAN DEFAULT FALSE,
@@ -146,11 +146,11 @@ CREATE TABLE media (
     description TEXT
 );
 
--- Table: topic_media
-CREATE TABLE topic_media (
-    topic_id BIGINT REFERENCES topics(id) ON DELETE CASCADE,
+-- Table: post_media
+CREATE TABLE post_media (
+    post_id BIGINT REFERENCES posts(id) ON DELETE CASCADE,
     media_id BIGINT REFERENCES media(id) ON DELETE CASCADE,
-    PRIMARY KEY (topic_id, media_id)
+    PRIMARY KEY (post_id, media_id)
 );
 
 -- Table: comment_media
@@ -160,13 +160,13 @@ CREATE TABLE comment_media (
     PRIMARY KEY (mongo_id, media_id)
 );
 
--- Table: topic_reactions (like/dislike for topics)
-CREATE TABLE topic_reactions (
+-- Table: post_reactions (like/dislike for posts)
+CREATE TABLE post_reactions (
     user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    topic_id BIGINT NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+    post_id BIGINT NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
     reaction SMALLINT NOT NULL CHECK (reaction IN (1, -1)),
     reacted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, topic_id)
+    PRIMARY KEY (user_id, post_id)
 );
 
 -- Table: comment_reactions (like/dislike for comments - MongoDB ID)
@@ -178,11 +178,11 @@ CREATE TABLE comment_reactions (
     PRIMARY KEY (user_id, mongo_id)
 );
 
--- Table: user_favorites (saved topics by users)
+-- Table: user_favorites (saved posts by users)
 CREATE TABLE user_favorites (
     user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    topic_id BIGINT NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+    post_id BIGINT NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
     favorited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, topic_id)
+    PRIMARY KEY (user_id, post_id)
 );
 
