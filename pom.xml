@@ -1,14 +1,25 @@
-<!-- Parent project POM: manages all modules -->
+<!-- Root project POM: Manages all submodules and configures Spring Boot parent -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Inherit Spring Boot defaults: versions, plugins, properties -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.3</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
   <groupId>com.forum</groupId>
   <artifactId>forum-platform</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
+
+  <name>Forum Platform</name>
+  <description>Modular backend architecture for forum project</description>
 
   <modules>
     <module>forum-domain</module>
@@ -30,6 +41,7 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- Spring Boot -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
@@ -37,12 +49,56 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <!-- Local project modules -->
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-domain</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-dto</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-mapper</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-persistence-pgsql</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-persistence-mongo</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-cache-redis</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-messaging</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.forum</groupId>
+        <artifactId>forum-application</artifactId>
+        <version>1.0.0</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
 
   <build>
     <pluginManagement>
       <plugins>
+        <!-- Java compiler plugin version -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -52,4 +108,3 @@
     </pluginManagement>
   </build>
 </project>
-
