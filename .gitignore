@@ -1,0 +1,80 @@
+# ===================
+# Java/Maven/Spring Boot
+# ===================
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.swp
+
+# Maven
+.mvn/
+!**/src/main/**/mvnw
+!**/src/main/**/mvnw.cmd
+
+# Gradle (kullanıyorsan)
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ===================
+# IntelliJ IDEA
+# ===================
+.idea/
+*.iws
+*.ipr
+*.iml
+out/
+
+# ===================
+# OS (macOS/Linux/Windows)
+# ===================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# ===================
+# Environment and Secrets
+# ===================
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+*.keystore
+
+# ===================
+# Docker
+# ===================
+**/docker-compose.override.yml
+**/.docker/
+**/docker-data/
+
+# ===================
+# Logs and Temp
+# ===================
+*.log
+logs/
+tmp/
+temp/
+
+# ===================
+# VSCode
+# ===================
+.vscode/
+.history/
+
+# ===================
+# Others
+# ===================
+*.bak
+*.old
+*.orig
+*.rej

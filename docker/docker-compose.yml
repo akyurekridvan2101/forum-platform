@@ -6,9 +6,9 @@ services:
     container_name: forum_postgres
     restart: always
     environment:
-      POSTGRES_DB: forumdb
-      POSTGRES_USER: userName
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
     ports:
       - "5432:5432"
     volumes:
