@@ -10,28 +10,25 @@ import java.time.Instant;
 @lombok.Getter
 @lombok.Setter
 @Entity
-@Table(name = "blocked_users")
-public class BlockedUser {
+@Table(name = "user_favorites")
+public class UserFavoriteEntity {
     @EmbeddedId
-    private BlockedUserId id;
+    private UserFavoriteIdEntity id;
 
-    @MapsId("blockerId")
+    @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "blocker_id", nullable = false)
-    private User blocker;
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity userEntity;
 
-    @MapsId("blockedId")
+    @MapsId("postId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "blocked_id", nullable = false)
-    private User blocked;
+    @JoinColumn(name = "post_id", nullable = false)
+    private PostEntity postEntity;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "blocked_at")
-    private Instant blockedAt;
-
-    @Column(name = "reason", length = Integer.MAX_VALUE)
-    private String reason;
+    @Column(name = "favorited_at")
+    private Instant favoritedAt;
 
 }

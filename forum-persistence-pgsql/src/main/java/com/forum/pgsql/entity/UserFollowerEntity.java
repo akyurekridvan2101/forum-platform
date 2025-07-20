@@ -10,24 +10,25 @@ import java.time.Instant;
 @lombok.Getter
 @lombok.Setter
 @Entity
-@Table(name = "user_roles")
-public class UserRole {
+@Table(name = "user_followers")
+public class UserFollowerEntity {
     @EmbeddedId
-    private UserRoleId id;
+    private UserFollowerIdEntity id;
 
-    @MapsId("userId")
+    @MapsId("followerId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "follower_id", nullable = false)
+    private UserEntity follower;
 
-    @MapsId("roleId")
+    @MapsId("followedId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "followed_id", nullable = false)
+    private UserEntity followed;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "assigned_at")
-    private Instant assignedAt;
+    @Column(name = "followed_at")
+    private Instant followedAt;
 
 }

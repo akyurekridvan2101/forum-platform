@@ -12,21 +12,21 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "post_reactions")
-public class PostReaction {
+public class PostReactionEntity {
     @EmbeddedId
-    private PostReactionId id;
+    private PostReactionIdEntity id;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity userEntity;
 
     @MapsId("postId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
+    private PostEntity postEntity;
 
     @NotNull
     @Column(name = "reaction", nullable = false)

@@ -11,7 +11,7 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "categories")
-public class Category {
+public class CategoryEntity {
     @Id
     @ColumnDefault("nextval('categories_id_seq')")
     @Column(name = "id", nullable = false)
@@ -32,7 +32,7 @@ public class Category {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    private Category parent;
+    private CategoryEntity parent;
 
     @ColumnDefault("true")
     @Column(name = "is_active")

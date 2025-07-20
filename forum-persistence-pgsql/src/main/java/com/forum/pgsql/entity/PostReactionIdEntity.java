@@ -11,28 +11,28 @@ import java.util.Objects;
 @lombok.Getter
 @lombok.Setter
 @Embeddable
-public class PostMediaId implements Serializable {
-    private static final long serialVersionUID = 4093360008585925929L;
+public class PostReactionIdEntity implements Serializable {
+    private static final long serialVersionUID = 2303872029561001749L;
+    @NotNull
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
     @NotNull
     @Column(name = "post_id", nullable = false)
     private Long postId;
-
-    @NotNull
-    @Column(name = "media_id", nullable = false)
-    private Long mediaId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        PostMediaId entity = (PostMediaId) o;
+        PostReactionIdEntity entity = (PostReactionIdEntity) o;
         return Objects.equals(this.postId, entity.postId) &&
-                Objects.equals(this.mediaId, entity.mediaId);
+                Objects.equals(this.userId, entity.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(postId, mediaId);
+        return Objects.hash(postId, userId);
     }
 
 }

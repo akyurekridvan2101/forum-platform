@@ -11,7 +11,7 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "posts")
-public class Post {
+public class PostEntity {
     @Id
     @ColumnDefault("nextval('posts_id_seq')")
     @Column(name = "id", nullable = false)
@@ -20,12 +20,12 @@ public class Post {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    private CategoryEntity categoryEntity;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id", nullable = false)
-    private User author;
+    private UserEntity author;
 
     @Size(max = 255)
     @NotNull

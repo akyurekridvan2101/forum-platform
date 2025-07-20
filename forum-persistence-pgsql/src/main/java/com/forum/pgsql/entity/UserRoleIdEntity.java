@@ -3,7 +3,6 @@ package com.forum.pgsql.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
@@ -12,29 +11,28 @@ import java.util.Objects;
 @lombok.Getter
 @lombok.Setter
 @Embeddable
-public class CommentReactionId implements Serializable {
-    private static final long serialVersionUID = 3116389979997621451L;
+public class UserRoleIdEntity implements Serializable {
+    private static final long serialVersionUID = 5914399420064315560L;
     @NotNull
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Size(max = 24)
     @NotNull
-    @Column(name = "mongo_id", nullable = false, length = 24)
-    private String mongoId;
+    @Column(name = "role_id", nullable = false)
+    private Short roleId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CommentReactionId entity = (CommentReactionId) o;
-        return Objects.equals(this.mongoId, entity.mongoId) &&
+        UserRoleIdEntity entity = (UserRoleIdEntity) o;
+        return Objects.equals(this.roleId, entity.roleId) &&
                 Objects.equals(this.userId, entity.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mongoId, userId);
+        return Objects.hash(roleId, userId);
     }
 
 }

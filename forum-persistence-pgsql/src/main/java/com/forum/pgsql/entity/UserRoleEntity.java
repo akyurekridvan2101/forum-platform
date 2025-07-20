@@ -1,7 +1,6 @@
 package com.forum.pgsql.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -11,23 +10,24 @@ import java.time.Instant;
 @lombok.Getter
 @lombok.Setter
 @Entity
-@Table(name = "comment_reactions")
-public class CommentReaction {
+@Table(name = "user_roles")
+public class UserRoleEntity {
     @EmbeddedId
-    private CommentReactionId id;
+    private UserRoleIdEntity id;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity userEntity;
 
-    @NotNull
-    @Column(name = "reaction", nullable = false)
-    private Short reaction;
+    @MapsId("roleId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity roleEntity;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "reacted_at")
-    private Instant reactedAt;
+    @Column(name = "assigned_at")
+    private Instant assignedAt;
 
 }

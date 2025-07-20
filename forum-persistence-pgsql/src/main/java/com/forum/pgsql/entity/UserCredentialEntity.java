@@ -13,7 +13,7 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "user_credentials")
-public class UserCredential {
+public class UserCredentialEntity {
     @Id
     @Column(name = "user_id", nullable = false)
     private Long id;
@@ -22,7 +22,7 @@ public class UserCredential {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    private User users;
+    private UserEntity users;
 
     @Size(max = 255)
     @NotNull

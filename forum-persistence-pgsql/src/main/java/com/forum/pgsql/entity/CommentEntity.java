@@ -11,7 +11,7 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "comments")
-public class Comment {
+public class CommentEntity {
     @Id
     @ColumnDefault("nextval('comments_id_seq')")
     @Column(name = "id", nullable = false)
@@ -25,16 +25,16 @@ public class Comment {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
+    private PostEntity postEntity;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id", nullable = false)
-    private User author;
+    private UserEntity author;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_comment_id")
-    private Comment parentComment;
+    private CommentEntity parentCommentEntity;
 
     @ColumnDefault("false")
     @Column(name = "is_hidden")

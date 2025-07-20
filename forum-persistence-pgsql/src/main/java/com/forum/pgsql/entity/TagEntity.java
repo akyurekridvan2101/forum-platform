@@ -11,7 +11,7 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "tags")
-public class Tag {
+public class TagEntity {
     @Id
     @ColumnDefault("nextval('tags_id_seq')")
     @Column(name = "id", nullable = false)
@@ -32,7 +32,7 @@ public class Tag {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by")
-    private User createdBy;
+    private UserEntity createdBy;
 
     @ColumnDefault("true")
     @Column(name = "is_approved")

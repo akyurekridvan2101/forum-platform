@@ -10,8 +10,8 @@ import jakarta.validation.constraints.Size;
 @lombok.Getter
 @lombok.Setter
 @Entity
-@Table(name = "user_status")
-public class UserStatus {
+@Table(name = "roles")
+public class RoleEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Short id;

@@ -11,7 +11,7 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "media")
-public class Media {
+public class MediaEntity {
     @Id
     @ColumnDefault("nextval('media_id_seq')")
     @Column(name = "id", nullable = false)
@@ -31,7 +31,7 @@ public class Media {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uploaded_by")
-    private User uploadedBy;
+    private UserEntity uploadedBy;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "uploaded_at")

@@ -7,21 +7,21 @@ import org.hibernate.annotations.OnDeleteAction;
 @lombok.Getter
 @lombok.Setter
 @Entity
-@Table(name = "post_tags")
-public class PostTag {
+@Table(name = "post_media")
+public class PostMediaEntity {
     @EmbeddedId
-    private PostTagId id;
+    private PostMediaIdEntity id;
 
     @MapsId("postId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
+    private PostEntity postEntity;
 
-    @MapsId("tagId")
+    @MapsId("mediaId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "tag_id", nullable = false)
-    private Tag tag;
+    @JoinColumn(name = "media_id", nullable = false)
+    private MediaEntity mediaEntity;
 
 }

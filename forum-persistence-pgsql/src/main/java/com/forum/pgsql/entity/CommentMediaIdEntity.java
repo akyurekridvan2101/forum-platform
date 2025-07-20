@@ -12,7 +12,7 @@ import java.util.Objects;
 @lombok.Getter
 @lombok.Setter
 @Embeddable
-public class CommentMediaId implements Serializable {
+public class CommentMediaIdEntity implements Serializable {
     private static final long serialVersionUID = 6256215962634317996L;
     @Size(max = 24)
     @NotNull
@@ -27,7 +27,7 @@ public class CommentMediaId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CommentMediaId entity = (CommentMediaId) o;
+        CommentMediaIdEntity entity = (CommentMediaIdEntity) o;
         return Objects.equals(this.mongoId, entity.mongoId) &&
                 Objects.equals(this.mediaId, entity.mediaId);
     }

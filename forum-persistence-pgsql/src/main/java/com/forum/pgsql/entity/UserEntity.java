@@ -11,7 +11,7 @@ import java.time.Instant;
 @lombok.Setter
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @ColumnDefault("nextval('users_id_seq')")
     @Column(name = "id", nullable = false)
@@ -43,7 +43,7 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @ColumnDefault("1")
     @JoinColumn(name = "status_id")
-    private UserStatus status;
+    private UserStatusEntity status;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at")

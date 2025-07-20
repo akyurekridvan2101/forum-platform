@@ -11,28 +11,28 @@ import java.util.Objects;
 @lombok.Getter
 @lombok.Setter
 @Embeddable
-public class PostTagId implements Serializable {
-    private static final long serialVersionUID = 6857599971735998718L;
+public class UserFollowerIdEntity implements Serializable {
+    private static final long serialVersionUID = 6472805642367260472L;
     @NotNull
-    @Column(name = "post_id", nullable = false)
-    private Long postId;
+    @Column(name = "follower_id", nullable = false)
+    private Long followerId;
 
     @NotNull
-    @Column(name = "tag_id", nullable = false)
-    private Long tagId;
+    @Column(name = "followed_id", nullable = false)
+    private Long followedId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        PostTagId entity = (PostTagId) o;
-        return Objects.equals(this.tagId, entity.tagId) &&
-                Objects.equals(this.postId, entity.postId);
+        UserFollowerIdEntity entity = (UserFollowerIdEntity) o;
+        return Objects.equals(this.followerId, entity.followerId) &&
+                Objects.equals(this.followedId, entity.followedId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tagId, postId);
+        return Objects.hash(followerId, followedId);
     }
 
 }
